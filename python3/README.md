@@ -1,0 +1,187 @@
+# Prediction Market Python Interface
+
+A Python interface for interacting with Partisia Blockchain prediction market smart contracts.
+
+## Overview
+
+This project provides tools to:
+
+1. Initialize new prediction markets
+2. Monitor market activity
+3. Place and manage trades
+4. Handle token operations
+
+## Components
+
+### Core Contract Interfaces
+
+- **`pbccontract.py`**: Base class for interacting with Partisia smart contracts
+
+  - Handles contract deployment and transactions
+  - Manages transaction verification and retries
+  - Logs operations for debugging
+
+- **`tokenv2.py`**: Interface for MPC20 token contracts
+
+  - Token deployment and management
+  - Handles approvals and transfers
+  - Tracks token metadata (name, symbol, decimals)
+
+- **`tokensplitter.py`**: Interface for prediction market token splitting
+
+  - Creates YES/NO token pairs
+  - Manages token splitting and joining
+  - Handles market settlement
+
+- **`doubleauction.py`**: Interface for the trading mechanism
+  - Places bid and ask orders
+  - Manages deposits/withdrawals
+  - Handles order cancellations
+
+### Utility Modules
+
+- **`serializedstate.py`**: Handles contract state deserialization
+
+  - Parses contract state from blockchain
+  - Supports various data types
+  - Provides clean interface for state reading
+
+- **`logger.py`**: Logging functionality
+
+  - Timestamps all operations
+  - Uses Danish timezone
+  - Maintains operation history
+
+- **`config.py`**: Configuration management
+  - Stores key file location
+  - Sets gas limits
+  - Controls careful mode for transactions
+
+### User Interface
+
+- **`monitor.py`**: Real-time market monitoring
+
+  - Shows order books
+  - Updates automatically
+  - Supports multiple markets
+
+- **`windowsupdater.py`**: Manages monitoring windows
+  - Adds/removes market views
+  - Persists window configurations
+  - Handles window updates
+
+### Market Operations
+
+- **`initprediction.py`**: Market initialization script
+
+  - Sets up new prediction markets
+  - Deploys necessary contracts
+  - Configures initial parameters
+
+- **`gamble.py`**: Trading interface
+  - Places market orders
+  - Handles token conversions
+  - Manages user positions
+
+## Usage
+
+### Setting Up a New Market
+
+```python
+# Initialize a new prediction market
+python initprediction.py
+```
+
+### Trading
+
+```python
+# Start trading interface
+python gamble.py
+```
+
+### Monitoring Markets
+
+```python
+# Launch market monitor
+python monitor.py
+```
+
+## Configuration
+
+1. Create a `config.py`:
+
+```python
+keyfile = "key.pk"  # Your private key file
+gas = 3000000       # Gas limit for transactions
+careful = True      # Enable transaction verification
+```
+
+2. Create necessary token contracts
+3. Initialize prediction market
+4. Configure monitoring windows
+
+## Development
+
+### Prerequisites
+
+- Python 3.7+
+- Partisia Blockchain CLI tools
+- Required Python packages:
+  ```
+  pip install pexpect requests pytz tkinter
+  ```
+
+### Project Structure
+
+```
+python3/
+├── config.py           # Configuration settings
+├── doubleauction.py   # Double auction interface
+├── gamble.py          # Trading interface
+├── initprediction.py  # Market initialization
+├── logger.py          # Logging utilities
+├── monitor.py         # Market monitoring
+├── pbccontract.py     # Base contract interface
+├── serializedstate.py # State parsing
+├── tokensplitter.py   # Token splitting interface
+├── tokenv2.py        # Token contract interface
+└── windowsupdater.py  # Monitor window management
+```
+
+### Security Notes
+
+- Private keys should be stored securely
+- Transaction verification is recommended
+- Monitor gas usage for operations
+- Validate token addresses carefully
+
+## Integration with Rust Contracts
+
+This Python interface works with two main Rust contracts:
+
+1. Token Splitter Contract (`token_splitter.rs`)
+2. Double Auction Contract (`double_auction.rs`)
+
+The interface handles:
+
+- Contract deployment
+- State management
+- Transaction submission
+- Event monitoring
+
+## Error Handling
+
+The system includes:
+
+- Transaction retry logic
+- State validation
+- Error logging
+- User feedback
+
+## Contributing
+
+[Add contribution guidelines here]
+
+## License
+
+[Add license information here]
