@@ -1,0 +1,4 @@
+21/03/25, 09:41:14: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 ../rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi ../rust/target/wasm32-unknown-unknown/release/token_v2.abi "betts token" "BETTS" 18 10000000000000000000000000
+
+21/03/25, 10:11:40: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 ../rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi ../rust/target/wasm32-unknown-unknown/release/token_v2.abi "Unknown Token | tomorrow brunch at 12" "UNKNOWN|brunchies" 18 0
+

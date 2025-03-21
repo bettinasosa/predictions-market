@@ -307,20 +307,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "prediction-market-token-splitter"
-version = "0.0.1"
-dependencies = [
- "create_type_spec_derive",
- "defi_common",
- "pbc_contract_codegen",
- "pbc_contract_common",
- "pbc_lib",
- "pbc_traits",
- "read_write_rpc_derive",
- "read_write_state_derive",
-]
-
-[[package]]
 name = "proc-macro2"
 version = "1.0.94"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -541,6 +527,34 @@ dependencies = [
  "once_cell",
  "rustix",
  "windows-sys",
+]
+
+[[package]]
+name = "token-splitter"
+version = "0.0.1"
+dependencies = [
+ "create_type_spec_derive",
+ "defi_common",
+ "pbc_contract_codegen",
+ "pbc_contract_common",
+ "pbc_lib",
+ "pbc_traits",
+ "read_write_rpc_derive",
+ "read_write_state_derive",
+]
+
+[[package]]
+name = "token-v2"
+version = "0.0.1"
+dependencies = [
+ "create_type_spec_derive",
+ "defi_common",
+ "pbc_contract_codegen",
+ "pbc_contract_common",
+ "pbc_lib",
+ "pbc_traits",
+ "read_write_rpc_derive",
+ "read_write_state_derive",
 ]
 
 [[package]]

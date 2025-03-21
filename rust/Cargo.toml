@@ -4,6 +4,7 @@ resolver = "2"
 members = [
     "double-auction",
     "token-splitter",
+    "token-v2"
 ]
 
 [workspace.package]

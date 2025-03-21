@@ -28,6 +28,13 @@ The Token Splitter contract manages the creation and redemption of prediction ma
 - **Oracle Integration**: Trusted oracle settles markets with final outcome
 - **Token Redemption**: Winners can redeem tokens for original asset
 
+#### Compiled Contract Name
+
+When compiled, this contract produces:
+
+- `token_splitter.wasm`
+- `token_splitter.abi`
+
 ### Double Auction Contract
 
 The Double Auction contract provides the trading mechanism for prediction market tokens using a limit order book system.
@@ -39,6 +46,30 @@ The Double Auction contract provides the trading mechanism for prediction market
 - **Automatic Matching**: Instantly matches compatible orders
 - **Token Balance Tracking**: Secure handling of user token balances
 - **Order Cancellation**: Users can cancel their unmatched orders
+
+#### Compiled Contract Name
+
+When compiled, this contract produces:
+
+- `double_auction.wasm`
+- `double_auction.abi`
+
+### Token V2 Contract
+
+A standard MPC20 token implementation used for creating the tradable tokens in the prediction market.
+
+#### Key Features
+
+- **Standard Token Operations**: Transfer, approve, etc.
+- **Metadata Management**: Name, symbol, decimals
+- **Balance Tracking**: Track balances for all users
+
+#### Compiled Contract Name
+
+When compiled, this contract produces:
+
+- `token_v2.wasm`
+- `token_v2.abi`
 
 ## Technical Architecture
 
@@ -134,8 +165,10 @@ The Double Auction contract provides the trading mechanism for prediction market
 ### Building
 
 ```bash
-cargo build
+cargo build --target wasm32-unknown-unknown --release
 ```
+
+This will generate the necessary WASM and ABI files in the `target/wasm32-unknown-unknown/release/` directory, which will be used by the Python interface.
 
 ### Testing
 
@@ -150,3 +183,23 @@ The smart contracts integrate with:
 - MPC20 token contracts
 - Oracle services
 - Frontend applications via contract events
+
+## Compilation
+
+To compile all the contracts:
+
+```bash
+cargo build --target wasm32-unknown-unknown --release
+```
+
+This will generate the necessary WASM and ABI files in the `target/wasm32-unknown-unknown/release/` directory, which will be used by the Python interface.
+
+## Integration with Python Interface
+
+This project is designed to work with the Python interface located in the `python3/` directory. The Python code expects the compiled contracts to be available at specific paths:
+
+- `token_v2.wasm` - Used by `tokenv2.py`
+- `token_splitter.wasm` - Used by `tokensplitter.py`
+- `double_auction.wasm` - Used by `doubleauction.py`
+
+Be sure to compile all contracts before running the Python interface.

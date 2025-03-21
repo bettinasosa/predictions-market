@@ -21,7 +21,7 @@ class TokenSplitter(PBCContract):
         oracle_address: Address authorized to settle market
     """
     def __init__(self, address = None, event_description = None, event_symbol=None, original_address = None, oracle_address = None):
-        super().__init__("../rust/target/wasm32-unknown-unknown/release/", "token_holder")
+        super().__init__("../rust/target/wasm32-unknown-unknown/release/", "token_splitter")
 
         if address:
             self.address = address
@@ -84,7 +84,7 @@ class TokenSplitter(PBCContract):
         self.interact("join", [amount])
 
     def settle(self, settle_to):
-        settle_string = false
+        settle_string = "false"
         if settle_to:
             settle_string = "true"
         self.interact("settle", [settle_string])

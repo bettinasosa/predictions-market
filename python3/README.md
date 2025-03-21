@@ -26,17 +26,20 @@ This project provides tools to:
   - Token deployment and management
   - Handles approvals and transfers
   - Tracks token metadata (name, symbol, decimals)
+  - Uses the compiled `token_v2.wasm` contract
 
 - **`tokensplitter.py`**: Interface for prediction market token splitting
 
   - Creates YES/NO token pairs
   - Manages token splitting and joining
   - Handles market settlement
+  - Uses the compiled `token_splitter.wasm` contract
 
 - **`doubleauction.py`**: Interface for the trading mechanism
   - Places bid and ask orders
   - Manages deposits/withdrawals
   - Handles order cancellations
+  - Uses the compiled `double_auction.wasm` contract
 
 ### Utility Modules
 
@@ -82,6 +85,36 @@ This project provides tools to:
   - Places market orders
   - Handles token conversions
   - Manages user positions
+
+## Setup and Compilation
+
+### Contract Compilation
+
+Before running the Python interface, you need to compile the Rust smart contracts:
+
+1. Navigate to the `rust` directory
+2. Run the following command to compile all smart contracts:
+
+   ```
+   cargo build --target wasm32-unknown-unknown --release
+   ```
+
+3. This will compile the following contracts:
+   - `token_v2.wasm`: Standard MPC20 token contract
+   - `double_auction.wasm`: Trading mechanism contract
+   - `token_splitter.wasm`: Token splitter contract (used by tokensplitter.py as the contract)
+
+If compilation fails or contracts are missing, you'll receive error messages with details.
+
+### Contract Locations
+
+The Python scripts expect the compiled contracts to be in the following location:
+
+```
+../rust/target/wasm32-unknown-unknown/release/
+```
+
+Make sure all three contracts are compiled before running the scripts.
 
 ## Usage
 
@@ -199,10 +232,11 @@ python3/
 
 ## Integration with Rust Contracts
 
-This Python interface works with two main Rust contracts:
+This Python interface works with three main Rust contracts:
 
-1. Token Splitter Contract (`token_splitter.rs`)
-2. Double Auction Contract (`double_auction.rs`)
+1. Token V2 Contract (`token_v2.wasm`) - Standard MPC20 token implementation
+2. Token Splitter Contract (`token_splitter.wasm`) - Handles token splitting and settlement
+3. Double Auction Contract (`double_auction.wasm`) - Trading mechanism
 
 The interface handles:
 
@@ -227,3 +261,7 @@ The system includes:
 ## License
 
 [Add license information here]
+
+```
+
+```
