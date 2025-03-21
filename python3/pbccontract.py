@@ -11,6 +11,8 @@ import subprocess
 import requests
 import time
 import json
+import shlex
+import os.path
 
 def verify_transaction(trans_id, retries):
     """
@@ -72,7 +74,7 @@ class PBCContract:
             except Exception as e:
                 PBCContract.log_file.print(f"Error: {e}")
             PBCContract.log_file.print("Retrying...")
-        raise Exception("Maximum attempts reached, alll attempted transactions failed.")
+        raise Exception("Maximum attempts reached, all attempted transactions failed.")
                             
     def __init__(self, path, name):
         self.path = path
@@ -89,9 +91,21 @@ class PBCContract:
         return self.shard
 
     def deploy(self, params):
-        s1 = "cargo pbc transaction deploy --privatekey " + config.keyfile + " --gas " + str(config.gas) + " " + self.path + self.contract_name + ".wasm --abi " + self.path + self.contract_name + ".abi"
+        wasm_path = os.path.join(self.path, self.contract_name + ".wasm")
+        abi_path = os.path.join(self.path, self.contract_name + ".abi")
+        
+        if not os.path.exists(wasm_path):
+            raise FileNotFoundError(f"Contract WASM file not found at: {wasm_path}\nPlease compile the contract first.")
+        
+        if not os.path.exists(abi_path):
+            raise FileNotFoundError(f"Contract ABI file not found at: {abi_path}\nPlease compile the contract first.")
+        
+        s1 = "cargo pbc transaction deploy --privatekey " + config.keyfile + " --gas " + str(config.gas) + " " + wasm_path + " --abi " + abi_path
         for s in params:
-            s1 = s1 + " " + str(s)
+            if isinstance(s, str) and ' ' in s:
+                s1 = s1 + " " + shlex.quote(s)
+            else:
+                s1 = s1 + " " + str(s)
         PBCContract.log_file.print(s1)
         child = pexpect.spawn(s1)
         child.expect("deployed at: .*\n")
@@ -100,9 +114,13 @@ class PBCContract:
         return self.address
 
     def interact(self, action_name, params):
-        s1 = "cargo pbc transaction action --show tx --privatekey " + config.keyfile + " --gas " + str(config.gas) + " --abi " + self.path + self.contract_name + ".abi " + self.address + " " + action_name
+        abi_path = os.path.join(self.path, self.contract_name + ".abi")
+        s1 = "cargo pbc transaction action --show tx --privatekey " + config.keyfile + " --gas " + str(config.gas) + " --abi " + abi_path + " " + self.address + " " + action_name
         for s in params:
-            s1 = s1 + " " + str(s)
+            if isinstance(s, str) and ' ' in s:
+                s1 = s1 + " " + shlex.quote(s)
+            else:
+                s1 = s1 + " " + str(s)
         if config.careful:
             return(PBCContract.carefully_execute(s1))
         else:

@@ -21,7 +21,7 @@ class TokenSplitter(PBCContract):
         oracle_address: Address authorized to settle market
     """
     def __init__(self, address = None, event_description = None, event_symbol=None, original_address = None, oracle_address = None):
-        super().__init__("../rust/target/wasm32-unknown-unknown/release/", "token_splitter")
+        super().__init__("rust/target/wasm32-unknown-unknown/release/", "token_splitter")
 
         if address:
             self.address = address
@@ -46,7 +46,7 @@ class TokenSplitter(PBCContract):
             false_token = TokenV2(name=original_token.name+" | !("+event_description+")", symbol=original_token.symbol+"|!"+event_symbol, decimals=original_token.decimals, supply = original_token.supply)
             self.false_address = false_token.address
             print("Deploying token splitter...")
-            self.deploy(['"'+event_description+'"', '"'+event_symbol+'"', original_address, true_token.address, false_token.address, oracle_address])
+            self.deploy([event_description, event_symbol, original_address, true_token.address, false_token.address, oracle_address])
             print('Approving transfer of all "True tokens" to token splitter contract') 
             true_token.approve_relative(self.address, original_token.supply)
             print("Doing the transfer")

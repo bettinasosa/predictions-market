@@ -30,7 +30,7 @@ class DoubleAuction(PBCContract):
             denominator: Optional - Price scaling denominator
             address: Optional - Existing contract address
         """
-        super().__init__("../rust/target/wasm32-unknown-unknown/release/", "double_auction")
+        super().__init__("rust/target/wasm32-unknown-unknown/release/", "double_auction")
 
         if address:
             self.address = address
