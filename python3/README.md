@@ -126,10 +126,52 @@ careful = True      # Enable transaction verification
 
 - Python 3.7+
 - Partisia Blockchain CLI tools
+- tkinter (system package, not pip installable)
 - Required Python packages:
   ```
-  pip install pexpect requests pytz tkinter
+  pip install pexpect requests pytz
   ```
+
+### Installing tkinter
+
+tkinter is a standard library module but may need to be installed separately:
+
+- **macOS**:
+
+  ```
+  brew install python-tk
+  ```
+
+- **Ubuntu/Debian**:
+
+  ```
+  sudo apt-get install python3-tk
+  ```
+
+- **Fedora/RHEL/CentOS**:
+  ```
+  sudo dnf install python3-tkinter
+  ```
+
+### Setting Up a Virtual Environment
+
+It's recommended to use a virtual environment to avoid dependency conflicts:
+
+```bash
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+# On macOS/Linux:
+source venv/bin/activate
+# On Windows:
+# venv\Scripts\activate
+
+# Install required dependencies (excluding tkinter, which is installed separately)
+pip install pexpect requests pytz
+```
+
+When finished, you can deactivate the virtual environment with the `deactivate` command.
 
 ### Project Structure
 

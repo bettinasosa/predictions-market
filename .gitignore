@@ -1,5 +1,5 @@
 # Rust
-/target/
+**/target/**
 **/*.rs.bk
 Cargo.lock
 .env
@@ -19,3 +19,6 @@ ENV/
 dist/
 config.py
 .pytest_cache/
+
+# Key
+key.pk
