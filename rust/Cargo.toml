@@ -1,24 +1,25 @@
 [workspace]
 resolver = "2"
+
 members = [
+    "double-auction",
     "token-splitter",
-    "double-auction"
 ]
 
 [workspace.package]
-version = "0.1.0"
-description = "Prediction Market Smart Contracts for Partisia Blockchain"
-homepage = "https://github.com/bettinasosa/predictions-market"
-repository = "https://github.com/bettinasosa/predictions-market"
-documentation = "https://github.com/bettinasosa/predictions-market"
+version = "0.0.1"
+description = "Prediction Market contracts for the Partisia BlockChain."
+homepage = "https://gitlab.com/secata/pbc/language/contracts/defi"
+repository = "https://gitlab.com/secata/pbc/language/contracts/defi"
+documentation = "https://gitlab.com/secata/pbc/language/contracts/defi"
 edition = "2021"
-license = "MIT"
+license = "UNLICENSED"
 
 [workspace.metadata.partisiablockchain]
-cargo-partisia = "5.85.0"
+cargo-partisia = "5.140.0"
 
 [workspace.metadata.zkcompiler]
-url = "https://gitlab.com/api/v4/groups/12499775/-/packages/maven/com/partisiablockchain/language/zkcompiler/5.46.0/zkcompiler-5.46.0-jar-with-dependencies.jar"
+url = "https://nexus.secata.com/repository/mvn/com/partisia/blockchain/language/zkcompiler/5.59.0/zkcompiler-5.59.0-jar-with-dependencies.jar"
 
 [workspace.metadata.abi-cli]
 url = "https://gitlab.com/api/v4/groups/12499775/-/packages/maven/com/partisiablockchain/language/abi-cli/5.102.0/abi-cli-5.102.0-jar-with-dependencies.jar"
@@ -33,12 +34,6 @@ read_write_state_derive = { git = "https://git@gitlab.com/partisiablockchain/lan
 create_type_spec_derive = { git = "https://git@gitlab.com/partisiablockchain/language/contract-sdk.git", tag = "v.16.74.0" }
 pbc_zk = { git = "https://git@gitlab.com/partisiablockchain/language/contract-sdk.git", tag = "v.16.74.0" }
 
-[profile.release]
-opt-level = 3
-lto = true
-codegen-units = 1
-panic = 'abort'
-
-[profile.dev]
-opt-level = 0
-debug = true 
+rand = "0.9.0"
+rand_chacha = "0.9.0"
+proptest = "1.4.0"

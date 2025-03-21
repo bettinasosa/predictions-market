@@ -86,9 +86,33 @@ Located in `/python3` directory:
    ```
 
 3. Run tests:
+
    ```bash
    cargo test
    ```
+
+4. Local Testing:
+   The contracts can be tested locally using the Partisia Blockchain test environment:
+
+   ```bash
+   # Start local test environment
+   partisia-test-env start
+
+   # Deploy contracts locally
+   cargo run --bin deploy-local
+
+   # Run integration tests
+   cargo test --test integration
+   ```
+
+   The local test environment provides a simulated blockchain where you can:
+
+   - Deploy contracts without using real tokens
+   - Test all contract functionality
+   - Debug contract behavior
+   - Simulate different market scenarios
+
+   Note: Make sure you have the Partisia Blockchain CLI tools installed for local testing.
 
 ### Python Interface Setup
 
