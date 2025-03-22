@@ -1,0 +1,10 @@
+{
+    "event": "coffeee?",
+    "oracle": "0013b7967769781cd145528eed2c444dad2201d7a0",
+    "currency": "02f164e1054155d7503198baa5d0544945a1381e00",
+    "splitter": "0275c324637fc156f87b8d711a8fc06e8a1172baee",
+    "true_token": "0259539016101fb657bdfe387111c10dd7d0195829",
+    "true_auction": "025ef5ce958766578e3aadf7e5108ea35da2eca69e",
+    "false_token": "02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6",
+    "false_auction": "02ad26d034ecc72b2a14cdbe390115e2a7266bcf5e"
+}

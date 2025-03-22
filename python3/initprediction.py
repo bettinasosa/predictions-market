@@ -28,9 +28,9 @@ true_token_address = my_splitter.true_address
 false_token_address = my_splitter.false_address
 
 print('Setting up double auction for "true token"...')
-auction_true = DoubleAuction(currency=original_address, asset=true_token_address, numerator=1, denominator=1000)
+auction_true = DoubleAuction(true_token_address=true_token_address, false_token_address=original_address, price_numerator=1, price_denominator=1000)
 print('Setting up double auction for "false token"...')
-auction_false = DoubleAuction(currency=original_address, asset=false_token_address, numerator=1, denominator=1000)
+auction_false = DoubleAuction(true_token_address=false_token_address, false_token_address=original_address, price_numerator=1, price_denominator=1000)
 print("")
 print("The prediction market is running.")
 print("")

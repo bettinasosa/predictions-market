@@ -84,3 +84,403 @@ View it in browser here: https://browser.testnet.partisiablockchain.com/contract
 
 21/03/25, 13:47:14: Retrying...
 
+22/03/25, 10:26:07: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | surfing' BETTS|surf 18 1000000000000000000000000
+
+22/03/25, 10:26:11: Deployed contract successfully.
+Contract deployed at: 0279bc4463a484f325032bdb672a45226a7c294f5f
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/0279bc4463a484f325032bdb672a45226a7c294f5f
+
+
+22/03/25, 10:26:17: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | !(surfing)' BETTS|!surf 18 1000000000000000000000000
+
+22/03/25, 10:26:20: Deployed contract successfully.
+Contract deployed at: 02be02552f483d01fa29ca454ee4933234ea85e3ac
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02be02552f483d01fa29ca454ee4933234ea85e3ac
+
+
+22/03/25, 10:26:26: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_splitter.wasm --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi surfing surf 02f164e1054155d7503198baa5d0544945a1381e00 0279bc4463a484f325032bdb672a45226a7c294f5f 02be02552f483d01fa29ca454ee4933234ea85e3ac 0013b7967769781cd145528eed2c444dad2201d7a0
+
+22/03/25, 10:26:30: Deployed contract successfully.
+Contract deployed at: 023ae5e6e0d9c967d52c9410faf007681cfe1f93eb
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/023ae5e6e0d9c967d52c9410faf007681cfe1f93eb
+
+
+22/03/25, 10:26:34: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 0279bc4463a484f325032bdb672a45226a7c294f5f approve_relative 023ae5e6e0d9c967d52c9410faf007681cfe1f93eb 1000000000000000000000000
+
+22/03/25, 10:26:35: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/501a2303445b7cacc5a5fbf7f3cc475c9b368f24a4a61d8e529254f2b50c44a0
+
+
+22/03/25, 10:26:51: Transaction https://browser.testnet.partisiablockchain.com/transactions/501a verification failed
+
+22/03/25, 10:26:51: Retrying command (attempt 2/3)...
+
+22/03/25, 10:26:53: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 0279bc4463a484f325032bdb672a45226a7c294f5f approve_relative 023ae5e6e0d9c967d52c9410faf007681cfe1f93eb 1000000000000000000000000
+
+22/03/25, 10:26:55: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/96330ac81ccde3d60619c298e6f2b14a8540c2935e7fa16cc0fe5eaeaa19b3bd
+
+
+22/03/25, 10:27:11: Transaction https://browser.testnet.partisiablockchain.com/transactions/9633 verification failed
+
+22/03/25, 10:27:11: Retrying command (attempt 3/3)...
+
+22/03/25, 10:27:15: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 0279bc4463a484f325032bdb672a45226a7c294f5f approve_relative 023ae5e6e0d9c967d52c9410faf007681cfe1f93eb 1000000000000000000000000
+
+22/03/25, 10:27:16: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/9f1c805451e8c5c3e1a16691052a9e1976bf69f9801cdea041ac5b106d77beee
+
+
+22/03/25, 10:27:32: Transaction https://browser.testnet.partisiablockchain.com/transactions/9f1c verification failed
+
+22/03/25, 10:27:32: Maximum attempts reached (3), all attempted transactions failed
+
+22/03/25, 10:32:40: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | surfing | will i go to sevilla' BETTS|surf|sevilla 18 1000000000000000000000000
+
+22/03/25, 10:32:43: Deployed contract successfully.
+Contract deployed at: 02158a12e44257bec4045b4133649573b8a6274f07
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02158a12e44257bec4045b4133649573b8a6274f07
+
+
+22/03/25, 10:32:49: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | surfing | !(will i go to sevilla)' BETTS|surf|!sevilla 18 1000000000000000000000000
+
+22/03/25, 10:32:52: Deployed contract successfully.
+Contract deployed at: 024ff0bb05ba95fc8e00a8a880ce2286fff40ae746
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/024ff0bb05ba95fc8e00a8a880ce2286fff40ae746
+
+
+22/03/25, 10:32:59: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_splitter.wasm --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 'will i go to sevilla' sevilla 0279bc4463a484f325032bdb672a45226a7c294f5f 02158a12e44257bec4045b4133649573b8a6274f07 024ff0bb05ba95fc8e00a8a880ce2286fff40ae746 0013b7967769781cd145528eed2c444dad2201d7a0
+
+22/03/25, 10:33:02: Deployed contract successfully.
+Contract deployed at: 02f4019d783203091d8f0debcfeee6a23a865541f3
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02f4019d783203091d8f0debcfeee6a23a865541f3
+
+
+22/03/25, 10:33:06: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02158a12e44257bec4045b4133649573b8a6274f07 approve_relative 02f4019d783203091d8f0debcfeee6a23a865541f3 1000000000000000000000000
+
+22/03/25, 10:33:07: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/e8ecadcdb4d41bd0c49f3b1abb27407df5cdb33493d8d2f615585c109ae9f255
+
+
+22/03/25, 10:33:08: Transaction e8ecadcdb4d41bd0c49f3b1abb27407df5cdb33493d8d2f615585c109ae9f255 verified as successful
+
+22/03/25, 10:33:10: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 02f4019d783203091d8f0debcfeee6a23a865541f3 deposit 02158a12e44257bec4045b4133649573b8a6274f07 1000000000000000000000000
+
+22/03/25, 10:33:11: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/76863c877212e4e421fdd88d3aad6988c14380ee3c78f2960905bd0272620aa0
+
+
+22/03/25, 10:33:11: Transaction 76863c877212e4e421fdd88d3aad6988c14380ee3c78f2960905bd0272620aa0 verified as successful
+
+22/03/25, 10:33:13: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 024ff0bb05ba95fc8e00a8a880ce2286fff40ae746 approve_relative 02f4019d783203091d8f0debcfeee6a23a865541f3 1000000000000000000000000
+
+22/03/25, 10:33:15: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/9223d50812bf7fd37b439debc990c7a3500caaeb03650ab1f2755f8aa4051590
+
+
+22/03/25, 10:33:15: Transaction 9223d50812bf7fd37b439debc990c7a3500caaeb03650ab1f2755f8aa4051590 verified as successful
+
+22/03/25, 10:33:17: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 02f4019d783203091d8f0debcfeee6a23a865541f3 deposit 024ff0bb05ba95fc8e00a8a880ce2286fff40ae746 1000000000000000000000000
+
+22/03/25, 10:33:18: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/e6bfc845add37dbce1dd46fb116c2b123e0409d9cb49e6d34e5c80b82aebf288
+
+
+22/03/25, 10:33:19: Transaction e6bfc845add37dbce1dd46fb116c2b123e0409d9cb49e6d34e5c80b82aebf288 verified as successful
+
+22/03/25, 10:33:21: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 02f4019d783203091d8f0debcfeee6a23a865541f3 prepare 1000000000000000000000000
+
+22/03/25, 10:33:22: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/90f543f28d8f5cca40c4f28e9527f1ca731867b354159a64f84afde165caef92
+
+
+22/03/25, 10:33:23: Transaction 90f543f28d8f5cca40c4f28e9527f1ca731867b354159a64f84afde165caef92 verified as successful
+
+22/03/25, 10:34:05: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | does he love me?' BETTS|love 18 1000000000000000000000000
+
+22/03/25, 10:34:08: Deployed contract successfully.
+Contract deployed at: 021a38802ec69fd02288fcec587e1883d90358eaa4
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/021a38802ec69fd02288fcec587e1883d90358eaa4
+
+
+22/03/25, 10:34:14: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | !(does he love me?)' BETTS|!love 18 1000000000000000000000000
+
+22/03/25, 10:34:18: Deployed contract successfully.
+Contract deployed at: 0279c5f3d4adc11762adc35f77fc11a91aa702132a
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/0279c5f3d4adc11762adc35f77fc11a91aa702132a
+
+
+22/03/25, 10:34:24: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_splitter.wasm --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 'does he love me?' love 02f164e1054155d7503198baa5d0544945a1381e00 021a38802ec69fd02288fcec587e1883d90358eaa4 0279c5f3d4adc11762adc35f77fc11a91aa702132a 0013b7967769781cd145528eed2c444dad2201d7a0
+
+22/03/25, 10:34:27: Deployed contract successfully.
+Contract deployed at: 026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c
+
+
+22/03/25, 10:34:31: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 021a38802ec69fd02288fcec587e1883d90358eaa4 approve_relative 026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c 1000000000000000000000000
+
+22/03/25, 10:34:32: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/a4542c82d4471f78e0b068901401a4f90af9871062abbda4a383d80a5c64c2f3
+
+
+22/03/25, 10:34:33: Transaction a4542c82d4471f78e0b068901401a4f90af9871062abbda4a383d80a5c64c2f3 verified as successful
+
+22/03/25, 10:34:35: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c deposit 021a38802ec69fd02288fcec587e1883d90358eaa4 1000000000000000000000000
+
+22/03/25, 10:34:36: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/5de078e50e69dd0aece0553b91ddff23f5c83150abc626dda427bb24f5de749b
+
+
+22/03/25, 10:34:36: Transaction 5de078e50e69dd0aece0553b91ddff23f5c83150abc626dda427bb24f5de749b verified as successful
+
+22/03/25, 10:34:38: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 0279c5f3d4adc11762adc35f77fc11a91aa702132a approve_relative 026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c 1000000000000000000000000
+
+22/03/25, 10:34:39: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/93be4a955155825f2b94ac46e1117ea54a2cf20a9f241d3b76e833b25e596ea8
+
+
+22/03/25, 10:34:40: Transaction 93be4a955155825f2b94ac46e1117ea54a2cf20a9f241d3b76e833b25e596ea8 verified as successful
+
+22/03/25, 10:34:42: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c deposit 0279c5f3d4adc11762adc35f77fc11a91aa702132a 1000000000000000000000000
+
+22/03/25, 10:34:43: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/b860798e7c4829a9fdf571c5b1b14b00cadd1feff64e66a9391516542ccc3da4
+
+
+22/03/25, 10:34:44: Transaction b860798e7c4829a9fdf571c5b1b14b00cadd1feff64e66a9391516542ccc3da4 verified as successful
+
+22/03/25, 10:34:46: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 026a5bd5069dac20212d0e9ebc74a71d8ab4eb480c prepare 1000000000000000000000000
+
+22/03/25, 10:34:47: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/3fc41a9c4a352c5849d06853638676cb8a686e3a751bb4a800df914997f95ce0
+
+
+22/03/25, 10:34:47: Transaction 3fc41a9c4a352c5849d06853638676cb8a686e3a751bb4a800df914997f95ce0 verified as successful
+
+22/03/25, 10:39:00: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | love me yes love me not' BETTS|lovers 18 1000000000000000000000000
+
+22/03/25, 10:39:04: Deployed contract successfully.
+Contract deployed at: 02e52729d15b11ee68fa6d6aeb2e093268c49106b2
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02e52729d15b11ee68fa6d6aeb2e093268c49106b2
+
+
+22/03/25, 10:39:10: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | !(love me yes love me not)' BETTS|!lovers 18 1000000000000000000000000
+
+22/03/25, 10:39:13: Deployed contract successfully.
+Contract deployed at: 02499f3fb9c2b7c61fd30cee34515499799d33f330
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02499f3fb9c2b7c61fd30cee34515499799d33f330
+
+
+22/03/25, 10:39:19: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_splitter.wasm --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 'love me yes love me not' lovers 02f164e1054155d7503198baa5d0544945a1381e00 02e52729d15b11ee68fa6d6aeb2e093268c49106b2 02499f3fb9c2b7c61fd30cee34515499799d33f330 0013b7967769781cd145528eed2c444dad2201d7a0
+
+22/03/25, 10:39:22: Deployed contract successfully.
+Contract deployed at: 023a4707ca62548655ed8bc43fd782b34506f9cb91
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/023a4707ca62548655ed8bc43fd782b34506f9cb91
+
+
+22/03/25, 10:39:27: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02e52729d15b11ee68fa6d6aeb2e093268c49106b2 approve_relative 023a4707ca62548655ed8bc43fd782b34506f9cb91 1000000000000000000000000
+
+22/03/25, 10:39:28: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/7b6f65dab5b61a68c44c006a992c29c1d47f7bd155957ad11f5249824a0271fd
+
+
+22/03/25, 10:39:28: Transaction 7b6f65dab5b61a68c44c006a992c29c1d47f7bd155957ad11f5249824a0271fd verified as successful
+
+22/03/25, 10:39:30: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 023a4707ca62548655ed8bc43fd782b34506f9cb91 deposit 02e52729d15b11ee68fa6d6aeb2e093268c49106b2 1000000000000000000000000
+
+22/03/25, 10:39:31: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/2c9b0119ae0c42962d0031a54a71a58928b9d037441a58738b93dfc8dc8f72c3
+
+
+22/03/25, 10:39:32: Transaction 2c9b0119ae0c42962d0031a54a71a58928b9d037441a58738b93dfc8dc8f72c3 verified as successful
+
+22/03/25, 10:39:34: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02499f3fb9c2b7c61fd30cee34515499799d33f330 approve_relative 023a4707ca62548655ed8bc43fd782b34506f9cb91 1000000000000000000000000
+
+22/03/25, 10:39:36: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/0d2a11904b210c314e71ed52fe142e55fb5fbf0de23bfcc44c66c800dd4c9c5f
+
+
+22/03/25, 10:39:36: Transaction 0d2a11904b210c314e71ed52fe142e55fb5fbf0de23bfcc44c66c800dd4c9c5f verified as successful
+
+22/03/25, 10:39:38: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 023a4707ca62548655ed8bc43fd782b34506f9cb91 deposit 02499f3fb9c2b7c61fd30cee34515499799d33f330 1000000000000000000000000
+
+22/03/25, 10:39:39: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/c12d0f2e9655de98e42392a460fef15b2f006227ca0b3eeca6810b30179f0c51
+
+
+22/03/25, 10:39:40: Transaction c12d0f2e9655de98e42392a460fef15b2f006227ca0b3eeca6810b30179f0c51 verified as successful
+
+22/03/25, 10:39:42: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 023a4707ca62548655ed8bc43fd782b34506f9cb91 prepare 1000000000000000000000000
+
+22/03/25, 10:39:43: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/71d9fdd7851af7c11f1eceb2f5dd472b0d8975bc8df7ecc726832303017d5790
+
+
+22/03/25, 10:39:44: Transaction 71d9fdd7851af7c11f1eceb2f5dd472b0d8975bc8df7ecc726832303017d5790 verified as successful
+
+22/03/25, 10:43:13: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | coffee date?' BETTS|coffee 18 1000000000000000000000000
+
+22/03/25, 10:43:16: Deployed contract successfully.
+Contract deployed at: 021a1a81bee4d26012ac8aea55ba938c302463a943
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/021a1a81bee4d26012ac8aea55ba938c302463a943
+
+
+22/03/25, 10:43:23: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | !(coffee date?)' BETTS|!coffee 18 1000000000000000000000000
+
+22/03/25, 10:43:26: Deployed contract successfully.
+Contract deployed at: 02d3993a249ce5f6a15ed97ca36e121cfe5d9f5d6b
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02d3993a249ce5f6a15ed97ca36e121cfe5d9f5d6b
+
+
+22/03/25, 10:43:32: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_splitter.wasm --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 'coffee date?' coffee 02f164e1054155d7503198baa5d0544945a1381e00 021a1a81bee4d26012ac8aea55ba938c302463a943 02d3993a249ce5f6a15ed97ca36e121cfe5d9f5d6b 0013b7967769781cd145528eed2c444dad2201d7a0
+
+22/03/25, 10:43:35: Deployed contract successfully.
+Contract deployed at: 0298de11cdfb07de144fe994ed27766409997ea74d
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/0298de11cdfb07de144fe994ed27766409997ea74d
+
+
+22/03/25, 10:43:39: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 021a1a81bee4d26012ac8aea55ba938c302463a943 approve_relative 0298de11cdfb07de144fe994ed27766409997ea74d 1000000000000000000000000
+
+22/03/25, 10:43:40: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/57a7ee892ed96ca9bcffca73891208fa9265a0e9671108d356ed04dbc21b7d84
+
+
+22/03/25, 10:43:41: Transaction 57a7ee892ed96ca9bcffca73891208fa9265a0e9671108d356ed04dbc21b7d84 verified as successful
+
+22/03/25, 10:43:43: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 0298de11cdfb07de144fe994ed27766409997ea74d deposit 021a1a81bee4d26012ac8aea55ba938c302463a943 1000000000000000000000000
+
+22/03/25, 10:43:44: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/085c0e8c41348e16bda53dc397527d6130a68f261ab5f49871324754bf072183
+
+
+22/03/25, 10:43:44: Transaction 085c0e8c41348e16bda53dc397527d6130a68f261ab5f49871324754bf072183 verified as successful
+
+22/03/25, 10:43:46: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02d3993a249ce5f6a15ed97ca36e121cfe5d9f5d6b approve_relative 0298de11cdfb07de144fe994ed27766409997ea74d 1000000000000000000000000
+
+22/03/25, 10:43:47: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/6813c1f19827be6850d70376bc07ec78c93897f8aba6f2f39968386ca895df41
+
+
+22/03/25, 10:43:48: Transaction 6813c1f19827be6850d70376bc07ec78c93897f8aba6f2f39968386ca895df41 verified as successful
+
+22/03/25, 10:43:50: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 0298de11cdfb07de144fe994ed27766409997ea74d deposit 02d3993a249ce5f6a15ed97ca36e121cfe5d9f5d6b 1000000000000000000000000
+
+22/03/25, 10:43:51: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/b90b65569553e49e2debf6b762e7aabc9af23bca810443fab34afa5847470025
+
+
+22/03/25, 10:43:52: Transaction b90b65569553e49e2debf6b762e7aabc9af23bca810443fab34afa5847470025 verified as successful
+
+22/03/25, 10:43:54: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 0298de11cdfb07de144fe994ed27766409997ea74d prepare 1000000000000000000000000
+
+22/03/25, 10:43:55: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/c91dd561c480d394c74247ca94733c7080dfeeae56ad75900d4d776a617c00e3
+
+
+22/03/25, 10:43:55: Transaction c91dd561c480d394c74247ca94733c7080dfeeae56ad75900d4d776a617c00e3 verified as successful
+
+22/03/25, 10:43:56: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/double_auction.wasm --abi rust/target/wasm32-unknown-unknown/release/double_auction.abi 021a1a81bee4d26012ac8aea55ba938c302463a943 02f164e1054155d7503198baa5d0544945a1381e00 1000
+
+22/03/25, 10:43:58: Error deploying contract: End Of File (EOF). Empty string style platform.
+<pexpect.pty_spawn.spawn object at 0x1058ab9d0>
+command: /Users/bettinasosa/.cargo/bin/cargo
+args: ['/Users/bettinasosa/.cargo/bin/cargo', 'pbc', 'transaction', 'deploy', '--privatekey', 'key.pk', '--gas', '3000000', 'rust/target/wasm32-unknown-unknown/release/double_auction.wasm', '--abi', 'rust/target/wasm32-unknown-unknown/release/double_auction.abi', '021a1a81bee4d26012ac8aea55ba938c302463a943', '02f164e1054155d7503198baa5d0544945a1381e00', '1000']
+buffer (last 100 chars): b''
+before (last 100 chars): b'rgument(s) but got 3.\r\n\x1b[38;5;9mERROR\x1b[0m Jar command failed, see console output for more details.\r\n'
+after: <class 'pexpect.exceptions.EOF'>
+match: None
+match_index: None
+exitstatus: None
+flag_eof: True
+pid: 66529
+child_fd: 7
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.exceptions.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+searcher: searcher_re:
+    0: re.compile(b'deployed at: .*\n')
+
+22/03/25, 10:48:27: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | coffeee?' BETTS|coffeedate 18 1000000000000000000000000
+
+22/03/25, 10:48:30: Deployed contract successfully.
+Contract deployed at: 0259539016101fb657bdfe387111c10dd7d0195829
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/0259539016101fb657bdfe387111c10dd7d0195829
+
+
+22/03/25, 10:48:37: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_v2.wasm --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 'betts test token | !(coffeee?)' BETTS|!coffeedate 18 1000000000000000000000000
+
+22/03/25, 10:48:40: Deployed contract successfully.
+Contract deployed at: 02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6
+
+
+22/03/25, 10:48:46: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/token_splitter.wasm --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi coffeee? coffeedate 02f164e1054155d7503198baa5d0544945a1381e00 0259539016101fb657bdfe387111c10dd7d0195829 02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6 0013b7967769781cd145528eed2c444dad2201d7a0
+
+22/03/25, 10:48:49: Deployed contract successfully.
+Contract deployed at: 0275c324637fc156f87b8d711a8fc06e8a1172baee
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/0275c324637fc156f87b8d711a8fc06e8a1172baee
+
+
+22/03/25, 10:48:53: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 0259539016101fb657bdfe387111c10dd7d0195829 approve_relative 0275c324637fc156f87b8d711a8fc06e8a1172baee 1000000000000000000000000
+
+22/03/25, 10:48:54: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/a53485d5a62b70f706e6f0c846f02b3e2bfaf195dd2d0e00474c3722f93912c8
+
+
+22/03/25, 10:48:55: Transaction a53485d5a62b70f706e6f0c846f02b3e2bfaf195dd2d0e00474c3722f93912c8 verified as successful
+
+22/03/25, 10:48:57: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 0275c324637fc156f87b8d711a8fc06e8a1172baee deposit 0259539016101fb657bdfe387111c10dd7d0195829 1000000000000000000000000
+
+22/03/25, 10:48:58: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/b18d936546e7ba48e94d0e416d02662f81c87038cddd5ad4fd8bd06a9059a0f3
+
+
+22/03/25, 10:48:59: Transaction b18d936546e7ba48e94d0e416d02662f81c87038cddd5ad4fd8bd06a9059a0f3 verified as successful
+
+22/03/25, 10:49:01: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6 approve_relative 0275c324637fc156f87b8d711a8fc06e8a1172baee 1000000000000000000000000
+
+22/03/25, 10:49:02: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/ca68d7f1802eac02933cc655167261856b7929c9bebe6776d9eb810449f388bf
+
+
+22/03/25, 10:49:02: Transaction ca68d7f1802eac02933cc655167261856b7929c9bebe6776d9eb810449f388bf verified as successful
+
+22/03/25, 10:49:04: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 0275c324637fc156f87b8d711a8fc06e8a1172baee deposit 02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6 1000000000000000000000000
+
+22/03/25, 10:49:06: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/3df4e2718bdee7e3f79e95f93c7006e84ea52cac67ebe161b28dc26f5ce97c75
+
+
+22/03/25, 10:49:06: Transaction 3df4e2718bdee7e3f79e95f93c7006e84ea52cac67ebe161b28dc26f5ce97c75 verified as successful
+
+22/03/25, 10:49:08: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_splitter.abi 0275c324637fc156f87b8d711a8fc06e8a1172baee prepare 1000000000000000000000000
+
+22/03/25, 10:49:10: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/e41b14178fc485ce6c91cc5e97e5c5caccd9e1306ec5598a7b85f18998c7ea02
+
+
+22/03/25, 10:49:10: Transaction e41b14178fc485ce6c91cc5e97e5c5caccd9e1306ec5598a7b85f18998c7ea02 verified as successful
+
+22/03/25, 10:49:11: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/double_auction.wasm --abi rust/target/wasm32-unknown-unknown/release/double_auction.abi 0259539016101fb657bdfe387111c10dd7d0195829 02f164e1054155d7503198baa5d0544945a1381e00 1 1000
+
+22/03/25, 10:49:14: Deployed contract successfully.
+Contract deployed at: 025ef5ce958766578e3aadf7e5108ea35da2eca69e
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/025ef5ce958766578e3aadf7e5108ea35da2eca69e
+
+
+22/03/25, 10:49:19: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 0259539016101fb657bdfe387111c10dd7d0195829 approve_relative 025ef5ce958766578e3aadf7e5108ea35da2eca69e 1000
+
+22/03/25, 10:49:20: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/ba04f501b6d065f52c31a8a0500534f20305a994ceb8fad29caf7c6dda74a1f3
+
+
+22/03/25, 10:49:20: Transaction ba04f501b6d065f52c31a8a0500534f20305a994ceb8fad29caf7c6dda74a1f3 verified as successful
+
+22/03/25, 10:49:22: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02f164e1054155d7503198baa5d0544945a1381e00 approve_relative 025ef5ce958766578e3aadf7e5108ea35da2eca69e 1000
+
+22/03/25, 10:49:23: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/ed5922eff6ba6de3991ac2479f3f0fb49cc6341ece0242296fd8b916b9d74e86
+
+
+22/03/25, 10:49:23: Transaction ed5922eff6ba6de3991ac2479f3f0fb49cc6341ece0242296fd8b916b9d74e86 verified as successful
+
+22/03/25, 10:49:25: cargo pbc transaction deploy --privatekey key.pk --gas 3000000 rust/target/wasm32-unknown-unknown/release/double_auction.wasm --abi rust/target/wasm32-unknown-unknown/release/double_auction.abi 02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6 02f164e1054155d7503198baa5d0544945a1381e00 1 1000
+
+22/03/25, 10:49:28: Deployed contract successfully.
+Contract deployed at: 02ad26d034ecc72b2a14cdbe390115e2a7266bcf5e
+View it in browser here: https://browser.testnet.partisiablockchain.com/contracts/02ad26d034ecc72b2a14cdbe390115e2a7266bcf5e
+
+
+22/03/25, 10:49:33: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02ab11aa662c3da37f64e8d714d2f9a8c86e0c40d6 approve_relative 02ad26d034ecc72b2a14cdbe390115e2a7266bcf5e 1000
+
+22/03/25, 10:49:34: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/e198df4c7f8cdaeb9541f38401660d9ec9b3f22ba56e41512a6cc737c7650f64
+
+
+22/03/25, 10:49:34: Transaction e198df4c7f8cdaeb9541f38401660d9ec9b3f22ba56e41512a6cc737c7650f64 verified as successful
+
+22/03/25, 10:49:36: cargo pbc transaction action --show tx --privatekey key.pk --gas 3000000 --abi rust/target/wasm32-unknown-unknown/release/token_v2.abi 02f164e1054155d7503198baa5d0544945a1381e00 approve_relative 02ad26d034ecc72b2a14cdbe390115e2a7266bcf5e 1000
+
+22/03/25, 10:49:37: Transaction sent: https://browser.testnet.partisiablockchain.com/transactions/c381a4f2bd9addea63f7882767984dfb068cf9b4bbedfad152d2ee1edeb1b1fa
+
+
+22/03/25, 10:49:37: Transaction c381a4f2bd9addea63f7882767984dfb068cf9b4bbedfad152d2ee1edeb1b1fa verified as successful
+
