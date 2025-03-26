@@ -1,16 +1,1 @@
-[
-    {
-        "window_title": "BETTS|coffeedate",
-        "rendering_function": "render_bids_asks",
-        "args_to_rendering_function": [
-            "025ef5ce958766578e3aadf7e5108ea35da2eca69e"
-        ]
-    },
-    {
-        "window_title": "BETTS|!coffeedate",
-        "rendering_function": "render_bids_asks",
-        "args_to_rendering_function": [
-            "02ad26d034ecc72b2a14cdbe390115e2a7266bcf5e"
-        ]
-    }
-]
+[]

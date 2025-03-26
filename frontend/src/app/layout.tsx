@@ -1,0 +1,42 @@
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { MarketProvider } from "@/contexts/MarketContext"
+import { WalletProvider } from "@/contexts/WalletContext"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Navbar } from "@/components/Navbar"
+
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "ProphetX",
+  description: "Decentralized prediction markets on Partisia Blockchain"
+}
+
+export default function RootLayout({
+  children
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen bg-background`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <WalletProvider>
+            <MarketProvider>
+              <div className="min-h-screen bg-background">
+                <Navbar />
+                <main className="container mx-auto py-8 px-4">{children}</main>
+              </div>
+            </MarketProvider>
+          </WalletProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
