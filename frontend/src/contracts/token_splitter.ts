@@ -1,6 +1,7 @@
 import { BlockchainTransactionClient } from "@partisiablockchain/blockchain-api-transaction-client"
 
 export type Address = string
+const GAS_LIMIT = 2010
 
 export enum LifeStage {
   PREPARING = 0,
@@ -47,9 +48,8 @@ export class TokenSplitterContract {
     falseTokenAddress: string,
     arbitratorAddress: string
   ) {
-    return this.client.createTransaction({
-      contract: this.address,
-      payload: {
+    const payload = Buffer.from(
+      JSON.stringify({
         type: "initialize",
         description,
         symbol,
@@ -57,9 +57,12 @@ export class TokenSplitterContract {
         trueTokenAddress,
         falseTokenAddress,
         arbitratorAddress
-      },
-      gasLimit: BigInt(20_000_000)
-    })
+      })
+    )
+    return this.client.signAndSend(
+      { address: this.address, rpc: payload },
+      GAS_LIMIT
+    )
   }
 
   async deposit(tokenAddress: Address, amount: bigint) {
@@ -68,7 +71,7 @@ export class TokenSplitterContract {
     )
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      GAS_LIMIT
     )
   }
 
@@ -86,7 +89,7 @@ export class TokenSplitterContract {
     )
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      GAS_LIMIT
     )
   }
 
@@ -94,7 +97,7 @@ export class TokenSplitterContract {
     const payload = Buffer.from(JSON.stringify({ amount: amount.toString() }))
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      20000
     )
   }
 
@@ -102,7 +105,7 @@ export class TokenSplitterContract {
     const payload = Buffer.from(JSON.stringify({ amount: amount.toString() }))
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      GAS_LIMIT
     )
   }
 
@@ -110,7 +113,7 @@ export class TokenSplitterContract {
     const payload = Buffer.from(JSON.stringify({ amount: amount.toString() }))
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      GAS_LIMIT
     )
   }
 
@@ -118,7 +121,7 @@ export class TokenSplitterContract {
     const payload = Buffer.from(JSON.stringify({ outcome }))
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      GAS_LIMIT
     )
   }
 
@@ -126,7 +129,7 @@ export class TokenSplitterContract {
     const payload = Buffer.from(JSON.stringify({ amount: amount.toString() }))
     return this.client.signAndSend(
       { address: this.address, rpc: payload },
-      100000
+      GAS_LIMIT
     )
   }
 }

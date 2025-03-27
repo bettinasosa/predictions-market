@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useWallet } from "@/contexts/WalletContext"
 import { useTokenSplitter } from "@/hooks/useTokenSplitter"
@@ -19,7 +19,7 @@ type FormData = {
 
 export default function CreateMarket() {
   const router = useRouter()
-  const { state } = useWallet()
+  const { state, connect } = useWallet()
   const { initialize } = useTokenSplitter()
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState<FormData>({
@@ -29,8 +29,15 @@ export default function CreateMarket() {
     initialLiquidity: "0"
   })
 
+  // Debug logging
+  useEffect(() => {
+    console.log("Wallet state:", state)
+  }, [state])
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    console.log("Submit clicked, wallet state:", state)
+
     if (!state.address) {
       toast.error("Please connect your wallet first")
       return
@@ -75,6 +82,15 @@ export default function CreateMarket() {
       <Card>
         <CardHeader>
           <CardTitle>Create a New Market</CardTitle>
+          <div className="text-sm text-muted-foreground">
+            {state.connected ? (
+              <span className="text-green-500">Connected: {state.address}</span>
+            ) : (
+              <Button onClick={connect} disabled={isLoading}>
+                Connect Wallet
+              </Button>
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -141,7 +157,11 @@ export default function CreateMarket() {
                 disabled={isLoading}
               />
             </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isLoading || !state.connected}
+            >
               {isLoading ? "Creating Market..." : "Create Market"}
             </Button>
           </form>

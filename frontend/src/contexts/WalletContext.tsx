@@ -1,113 +1,38 @@
 "use client"
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode
-} from "react"
-import PartisiaSdk from "partisia-sdk"
+import { createContext, useContext, ReactNode } from "react"
+import { useMetaMaskWallet } from "@/hooks/useWallet"
 
-type WalletState = {
-  isConnected: boolean
-  address: string | null
+interface WalletState {
+  connected: boolean
+  address: string
   error: string | null
 }
 
-type WalletContextType = {
+interface WalletContextType {
   state: WalletState
   connect: () => Promise<void>
-  disconnect: () => Promise<void>
-  signAndSendTransaction: (transaction: any) => Promise<string>
+  signMessage: (message: string) => Promise<unknown>
 }
 
 const WalletContext = createContext<WalletContextType | null>(null)
 
 export function WalletProvider({ children }: { children: ReactNode }) {
-  const [sdk] = useState(() => new PartisiaSdk())
-  const [state, setState] = useState<WalletState>({
-    isConnected: false,
-    address: null,
-    error: null
-  })
+  const { connected, address, error, connect, signMessage } =
+    useMetaMaskWallet()
 
-  useEffect(() => {
-    // Check if wallet is already connected
-    if (sdk.isConnected) {
-      setState({
-        isConnected: true,
-        address: sdk.connection!.account.address,
-        error: null
-      })
-    }
-  }, [sdk])
-
-  const connect = async () => {
-    try {
-      await sdk.connect({
-        permissions: ["sign"],
-        dappName: "ProphetX",
-        chainId: "Partisia Blockchain"
-      })
-
-      setState({
-        isConnected: true,
-        address: sdk.connection!.account.address,
-        error: null
-      })
-    } catch (error) {
-      setState({
-        isConnected: false,
-        address: null,
-        error:
-          error instanceof Error ? error.message : "Failed to connect wallet"
-      })
-    }
-  }
-
-  const disconnect = async () => {
-    try {
-      await sdk.disconnect()
-      setState({
-        isConnected: false,
-        address: null,
-        error: null
-      })
-    } catch (error) {
-      setState({
-        isConnected: false,
-        address: null,
-        error:
-          error instanceof Error ? error.message : "Failed to disconnect wallet"
-      })
-    }
-  }
-
-  const signAndSendTransaction = async (transaction: any) => {
-    try {
-      const result = await sdk.signMessage({
-        contract: transaction.contract,
-        payload: transaction.payload,
-        payloadType: "hex_payload"
-      })
-      return result.trxHash
-    } catch (error) {
-      setState(prev => ({
-        ...prev,
-        error:
-          error instanceof Error ? error.message : "Failed to sign transaction"
-      }))
-      throw error
-    }
+  const value = {
+    state: {
+      connected,
+      address,
+      error
+    },
+    connect,
+    signMessage
   }
 
   return (
-    <WalletContext.Provider
-      value={{ state, connect, disconnect, signAndSendTransaction }}
-    >
-      {children}
-    </WalletContext.Provider>
+    <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
   )
 }
 
