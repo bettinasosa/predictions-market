@@ -8,7 +8,7 @@ import { useWallet } from "@/contexts/WalletContext"
 
 export function Navbar() {
   const { theme, setTheme } = useTheme()
-  const { isConnected, address, connect, disconnect } = useWallet()
+  const { state, connect, disconnect } = useWallet()
 
   return (
     <nav className="border-b">
@@ -23,10 +23,10 @@ export function Navbar() {
           <Link href="/create">
             <Button>Create Market</Button>
           </Link>
-          {isConnected ? (
+          {state.connected ? (
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">
-                {address?.slice(0, 6)}...{address?.slice(-4)}
+                {state.address.slice(0, 6)}...{state.address.slice(-4)}
               </span>
               <Button variant="outline" onClick={disconnect}>
                 Disconnect

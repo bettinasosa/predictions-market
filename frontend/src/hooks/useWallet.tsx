@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { toast } from "sonner"
 
 const PARTISIA_SNAP_ID = "npm:@partisiablockchain/snap"
@@ -43,6 +43,13 @@ declare global {
   }
 }
 
+interface SnapResult {
+  [key: string]: {
+    enabled: boolean
+    permission?: string[]
+  }
+}
+
 export function useMetaMaskWallet() {
   const [connected, setConnected] = useState(false)
   const [address, setAddress] = useState("")
@@ -60,12 +67,16 @@ export function useMetaMaskWallet() {
       })
 
       // Install Partisia Snap
-      await window.ethereum.request({
+      const snapResult = (await window.ethereum.request({
         method: "wallet_requestSnaps",
         params: {
           [PARTISIA_SNAP_ID]: {}
         }
-      })
+      })) as SnapResult
+
+      if (!snapResult || !(PARTISIA_SNAP_ID in snapResult)) {
+        throw new Error("Failed to install Partisia snap")
+      }
 
       // Get Partisia address
       const partisiaAddress = await window.ethereum.request({
@@ -90,7 +101,15 @@ export function useMetaMaskWallet() {
       const error = err as Error
       setError(error.message)
       toast.error(error.message)
+      setConnected(false)
+      setAddress("")
     }
+  }, [])
+
+  const disconnect = useCallback(() => {
+    setConnected(false)
+    setAddress("")
+    setError(null)
   }, [])
 
   const signMessage = useCallback(
@@ -107,7 +126,7 @@ export function useMetaMaskWallet() {
               method: "sign_transaction",
               params: {
                 payload: message,
-                chainId: "testnet" // or "mainnet" depending on your needs
+                chainId: "testnet"
               }
             }
           }
@@ -121,5 +140,10 @@ export function useMetaMaskWallet() {
     [connected]
   )
 
-  return { connected, address, error, connect, signMessage }
+  // Initialize connection on mount
+  useEffect(() => {
+    connect()
+  }, [connect])
+
+  return { connected, address, error, connect, disconnect, signMessage }
 }

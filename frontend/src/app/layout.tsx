@@ -1,17 +1,14 @@
-import type { Metadata } from "next"
+"use client"
+
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { MarketProvider } from "@/contexts/MarketContext"
 import { WalletProvider } from "@/contexts/WalletContext"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/Navbar"
+import { Toaster } from "sonner"
 
 const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "ProphetX",
-  description: "Decentralized prediction markets on Partisia Blockchain"
-}
 
 export default function RootLayout({
   children
@@ -35,6 +32,7 @@ export default function RootLayout({
               </div>
             </MarketProvider>
           </WalletProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

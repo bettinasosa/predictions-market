@@ -46,7 +46,7 @@ export function useTokenSplitter(contractAddress?: string): {
   connected: boolean
   address: string
 } & TokenSplitterMethods {
-  const { connected, address, signMessage } = useMetaMaskWallet()
+  const { connected, address, signMessage, connect } = useMetaMaskWallet()
 
   const client = useMemo(() => {
     if (!connected || !address) {
@@ -67,20 +67,26 @@ export function useTokenSplitter(contractAddress?: string): {
 
   const deposit = useCallback(
     async (tokenAddress: string, amount: bigint) => {
+      if (!connected) {
+        await connect()
+      }
       if (!contract) throw new Error("Contract not initialized")
       const result = await contract.deposit(tokenAddress, amount)
       return result.toString()
     },
-    [contract]
+    [contract, connected, connect]
   )
 
   const withdraw = useCallback(
     async (tokenAddress: string, amount: bigint, isTrue: boolean) => {
+      if (!connected) {
+        await connect()
+      }
       if (!contract) throw new Error("Contract not initialized")
       const result = await contract.withdraw(tokenAddress, amount, isTrue)
       return result.toString()
     },
-    [contract]
+    [contract, connected, connect]
   )
 
   const initialize = useCallback(
@@ -92,7 +98,9 @@ export function useTokenSplitter(contractAddress?: string): {
       falseTokenAddress: string,
       arbitratorAddress: string
     ) => {
-      if (!connected) throw new Error("Wallet not connected")
+      if (!connected) {
+        await connect()
+      }
 
       // Open the Partisia Blockchain Browser in a new tab for contract deployment
       const params = new URLSearchParams({
@@ -109,7 +117,7 @@ export function useTokenSplitter(contractAddress?: string): {
       // Return a message indicating manual deployment is required
       return "Please deploy the contract using the Partisia Blockchain Browser. Once deployed, use the contract address to interact with it."
     },
-    [connected]
+    [connected, connect]
   )
 
   return {

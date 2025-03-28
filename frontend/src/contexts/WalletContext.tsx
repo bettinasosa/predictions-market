@@ -12,13 +12,14 @@ interface WalletState {
 interface WalletContextType {
   state: WalletState
   connect: () => Promise<void>
+  disconnect: () => void
   signMessage: (message: string) => Promise<unknown>
 }
 
 const WalletContext = createContext<WalletContextType | null>(null)
 
 export function WalletProvider({ children }: { children: ReactNode }) {
-  const { connected, address, error, connect, signMessage } =
+  const { connected, address, error, connect, disconnect, signMessage } =
     useMetaMaskWallet()
 
   const value = {
@@ -28,6 +29,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       error
     },
     connect,
+    disconnect,
     signMessage
   }
 

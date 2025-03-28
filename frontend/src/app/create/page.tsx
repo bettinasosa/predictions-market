@@ -19,7 +19,7 @@ type FormData = {
 
 export default function CreateMarket() {
   const router = useRouter()
-  const { state, connect } = useWallet()
+  const { state } = useWallet()
   const { initialize } = useTokenSplitter()
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState<FormData>({
@@ -29,19 +29,16 @@ export default function CreateMarket() {
     initialLiquidity: "0"
   })
 
-  // Debug logging
+  // Redirect if not connected
   useEffect(() => {
-    console.log("Wallet state:", state)
-  }, [state])
+    if (!state.connected) {
+      toast.error("Please connect your wallet first")
+      router.push("/")
+    }
+  }, [state.connected, router])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("Submit clicked, wallet state:", state)
-
-    if (!state.address) {
-      toast.error("Please connect your wallet first")
-      return
-    }
 
     const initialLiquidity = parseFloat(formData.initialLiquidity)
     if (isNaN(initialLiquidity) || initialLiquidity <= 0) {
@@ -77,20 +74,16 @@ export default function CreateMarket() {
     }
   }
 
+  // Don't render anything if not connected
+  if (!state.connected) {
+    return null
+  }
+
   return (
     <div className="max-w-2xl mx-auto">
       <Card>
         <CardHeader>
           <CardTitle>Create a New Market</CardTitle>
-          <div className="text-sm text-muted-foreground">
-            {state.connected ? (
-              <span className="text-green-500">Connected: {state.address}</span>
-            ) : (
-              <Button onClick={connect} disabled={isLoading}>
-                Connect Wallet
-              </Button>
-            )}
-          </div>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -157,11 +150,7 @@ export default function CreateMarket() {
                 disabled={isLoading}
               />
             </div>
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isLoading || !state.connected}
-            >
+            <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Creating Market..." : "Create Market"}
             </Button>
           </form>
