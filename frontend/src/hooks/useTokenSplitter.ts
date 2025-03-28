@@ -102,22 +102,57 @@ export function useTokenSplitter(contractAddress?: string): {
         await connect()
       }
 
-      // Open the Partisia Blockchain Browser in a new tab for contract deployment
-      const params = new URLSearchParams({
-        description,
-        symbol,
-        originalToken: originalTokenAddress,
-        trueToken: trueTokenAddress,
-        falseToken: falseTokenAddress,
-        arbitrator: arbitratorAddress
-      })
-      const deployUrl = `https://browser.testnet.partisiablockchain.com/contracts/deploy?${params.toString()}`
-      window.open(deployUrl, "_blank")
+      if (!client) {
+        throw new Error("Blockchain client not initialized")
+      }
 
-      // Return a message indicating manual deployment is required
-      return "Please deploy the contract using the Partisia Blockchain Browser. Once deployed, use the contract address to interact with it."
+      try {
+        // Create a temporary contract instance for deployment
+        const tempContract = new TokenSplitterContract(client, "")
+
+        // Deploy the contract
+        const deployResult = await tempContract.initialize(
+          description,
+          symbol,
+          originalTokenAddress,
+          trueTokenAddress,
+          falseTokenAddress,
+          arbitratorAddress
+        )
+
+        // Wait for deployment confirmation
+        const deployedAddress = await new Promise<string>((resolve, reject) => {
+          const checkInterval = setInterval(async () => {
+            try {
+              // Check if the transaction is verified
+              const response = await fetch(
+                `https://node1.testnet.partisiablockchain.com/chain/shards/Shard0/transactions/${deployResult.toString()}`
+              )
+              const data = await response.json()
+
+              if (data?.executionStatus?.success === true) {
+                clearInterval(checkInterval)
+                resolve(deployResult.toString())
+              }
+            } catch {
+              // Transaction might not be ready yet, continue checking
+            }
+          }, 2000) // Check every 2 seconds
+
+          // Timeout after 30 seconds
+          setTimeout(() => {
+            clearInterval(checkInterval)
+            reject(new Error("Contract deployment timeout"))
+          }, 30000)
+        })
+
+        return deployedAddress
+      } catch (error) {
+        console.error("Failed to deploy contract:", error)
+        throw new Error("Failed to deploy contract. Please try again.")
+      }
     },
-    [connected, connect]
+    [connected, connect, client]
   )
 
   return {
