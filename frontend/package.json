@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@partisiablockchain/abi-client": "^5.154.0",
+    "@partisiablockchain/abi-client": "^5.160.0",
     "@partisiablockchain/blockchain-api-transaction-client": "^5.113.0",
     "@radix-ui/react-slot": "^1.1.2",
     "@rainbow-me/rainbowkit": "^2.2.4",

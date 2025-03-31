@@ -45,20 +45,18 @@ export function useTokenSplitter(contractAddress?: string): {
   client: BlockchainTransactionClient | null
   connected: boolean
   address: string
+  isInitialized: boolean
 } & TokenSplitterMethods {
-  const { connected, address, signMessage, connect } = useWallet()
+  const { state, client: walletClient, connect } = useWallet()
+  const { connected, address, isInitialized } = state
 
   const client = useMemo(() => {
-    if (!connected || !address) {
+    if (!connected || !address || !isInitialized || !walletClient) {
       return null
     }
 
-    return BlockchainTransactionClient.create(
-      "https://node1.testnet.partisiablockchain.com",
-      new WalletSenderAuthentication(signMessage, address),
-      0 // chainId for testnet
-    )
-  }, [connected, address, signMessage])
+    return walletClient
+  }, [connected, address, isInitialized, walletClient])
 
   const contract = useMemo(() => {
     if (!client || !contractAddress) return null
@@ -70,11 +68,14 @@ export function useTokenSplitter(contractAddress?: string): {
       if (!connected) {
         await connect()
       }
+      if (!isInitialized) {
+        throw new Error("Wallet not fully initialized")
+      }
       if (!contract) throw new Error("Contract not initialized")
       const result = await contract.deposit(tokenAddress, amount)
       return result.toString()
     },
-    [contract, connected, connect]
+    [contract, connected, connect, isInitialized]
   )
 
   const withdraw = useCallback(
@@ -82,11 +83,14 @@ export function useTokenSplitter(contractAddress?: string): {
       if (!connected) {
         await connect()
       }
+      if (!isInitialized) {
+        throw new Error("Wallet not fully initialized")
+      }
       if (!contract) throw new Error("Contract not initialized")
       const result = await contract.withdraw(tokenAddress, amount, isTrue)
       return result.toString()
     },
-    [contract, connected, connect]
+    [contract, connected, connect, isInitialized]
   )
 
   const initialize = useCallback(
@@ -102,8 +106,8 @@ export function useTokenSplitter(contractAddress?: string): {
         await connect()
       }
 
-      if (!client) {
-        throw new Error("Blockchain client not initialized")
+      if (!client || !isInitialized) {
+        throw new Error("Wallet not fully initialized")
       }
 
       try {
@@ -307,7 +311,7 @@ export function useTokenSplitter(contractAddress?: string): {
         throw new Error("Failed to deploy contract. Please try again.")
       }
     },
-    [connected, connect, client]
+    [client, connected, connect, isInitialized]
   )
 
   return {
@@ -315,6 +319,7 @@ export function useTokenSplitter(contractAddress?: string): {
     client,
     connected,
     address,
+    isInitialized,
     deposit,
     withdraw,
     initialize
