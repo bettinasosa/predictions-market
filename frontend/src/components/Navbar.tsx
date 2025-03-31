@@ -10,6 +10,10 @@ export function Navbar() {
   const { theme, setTheme } = useTheme()
   const { state, connect, disconnect } = useWallet()
 
+  if (state.connected && sdk && client) {
+    return
+  }
+
   return (
     <nav className="border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
