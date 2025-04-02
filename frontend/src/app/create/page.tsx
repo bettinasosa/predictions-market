@@ -46,11 +46,24 @@ export default function CreateMarket() {
       return
     }
 
+    // Validate end date
+    const endDateTimestamp = new Date(formData.endDate).getTime()
+    if (isNaN(endDateTimestamp) || endDateTimestamp <= Date.now()) {
+      toast.error("Please enter a valid future end date")
+      return
+    }
+
     setIsLoading(true)
     try {
+      // Create the market with end date in the description
+      const marketDescription = JSON.stringify({
+        description: formData.description,
+        endDate: endDateTimestamp
+      })
+
       // Create the market directly using the initialize method
       const result = await initialize(
-        formData.description,
+        marketDescription, // Pass structured description with end date
         formData.title,
         "MPC", // Original token address
         "MPC_YES", // True token address

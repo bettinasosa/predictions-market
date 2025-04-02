@@ -180,16 +180,24 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
       while (retryCount < maxRetries) {
         try {
+          // Use a shorter validity window and current timestamp
+          const now = Math.floor(Date.now() / 1000) * 1000 // Round to nearest second
+
           // Format transaction payload according to Partisia spec
           const txPayload = {
-            nonce: Date.now().toString(), // Fresh timestamp for each attempt
-            validTo: String(new Date().getTime() + 300000), // 5 minute validity
+            nonce: now.toString(),
+            validTo: String(now + 30000), // 30 seconds validity
             gasCost: String(cost),
             address: payload.contractAddress,
             rpc: payload.rpc
           }
 
-          // Sign and send transaction
+          console.log("Sending transaction with payload:", {
+            ...txPayload,
+            rpc: "0x" + payload.rpc.toString("hex").slice(0, 20) + "..." // Truncate RPC for logging
+          })
+
+          // Use signMessage with the correct payload format
           const result = await sdk.signMessage({
             payload: Buffer.from(JSON.stringify(txPayload)).toString("hex"),
             payloadType: "hex",
@@ -199,6 +207,80 @@ export function WalletProvider({ children }: { children: ReactNode }) {
           if (!result.trxHash) {
             throw new Error("No transaction hash returned")
           }
+
+          // Wait for transaction to be confirmed across all shards
+          await new Promise<void>((resolve, reject) => {
+            const timeout = setTimeout(() => {
+              reject(new Error("Transaction confirmation timeout"))
+            }, 30000) // 30 second timeout
+
+            const checkConfirmation = async () => {
+              try {
+                // Check all shards for the transaction
+                const shards = [0, 1, 2]
+                let successCount = 0
+                let errorCount = 0
+
+                for (const shard of shards) {
+                  try {
+                    const response = await fetch(
+                      `https://node1.testnet.partisiablockchain.com/chain/shards/Shard${shard}/transactions/${result.trxHash}`
+                    )
+
+                    if (!response.ok) {
+                      console.error(
+                        `Transaction check failed for shard ${shard}:`,
+                        response.status,
+                        response.statusText
+                      )
+                      errorCount++
+                      continue
+                    }
+
+                    const data = await response.json()
+                    console.log(
+                      `Transaction status check for shard ${shard}:`,
+                      data
+                    )
+
+                    if (data?.executionStatus?.success === true) {
+                      successCount++
+                      if (successCount >= 2) {
+                        // Require at least 2 shards to confirm
+                        clearTimeout(timeout)
+                        resolve()
+                        return
+                      }
+                    } else if (data?.executionStatus?.success === false) {
+                      errorCount++
+                      if (errorCount >= 2) {
+                        // If 2 shards report failure
+                        clearTimeout(timeout)
+                        reject(
+                          new Error(
+                            `Transaction failed: ${data.executionStatus.error || "Unknown error"}`
+                          )
+                        )
+                        return
+                      }
+                    }
+                  } catch (error) {
+                    console.error(`Error checking shard ${shard}:`, error)
+                    errorCount++
+                  }
+                }
+
+                // If we get here, transaction is still pending
+                setTimeout(checkConfirmation, 2000) // Check every 2 seconds
+              } catch (error) {
+                console.error("Error checking transaction status:", error)
+                // Transaction might not be ready yet, continue checking
+                setTimeout(checkConfirmation, 2000)
+              }
+            }
+
+            checkConfirmation()
+          })
 
           return {
             transactionHash: result.trxHash
@@ -218,8 +300,9 @@ export function WalletProvider({ children }: { children: ReactNode }) {
             throw error
           }
 
-          // Wait before retrying (increasing delay for each retry)
-          await new Promise(resolve => setTimeout(resolve, 1000 * retryCount))
+          // Wait before retrying (exponential backoff)
+          const delay = Math.min(1000 * Math.pow(2, retryCount), 10000)
+          await new Promise(resolve => setTimeout(resolve, delay))
           console.log(`Retrying transaction (attempt ${retryCount + 1})...`)
         }
       }
